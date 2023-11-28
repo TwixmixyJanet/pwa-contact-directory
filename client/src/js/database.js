@@ -2,9 +2,17 @@
 import { openDB } from 'idb';
 
 // TODO: Complete the initDb() function below:
-const initdb = async () => {
-
-};
+const initdb = async () => 
+  openDB('mini', 1, {
+    upgrade(db) {
+      if (db.objectStoreNames.contains('mini')) {
+        console.log('mini database already exists');
+        return;
+      }
+      db.createObjectStore('mini', { keyPath: 'id', autoIncrement: true });
+      console.log('mini database created');
+    },
+  });
 
 
 // TODO: Complete the postDb() function below:
