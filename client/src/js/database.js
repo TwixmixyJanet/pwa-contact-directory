@@ -17,7 +17,13 @@ const initdb = async () =>
 
 // TODO: Complete the postDb() function below:
 export const postDb = async (name, home, cell, email)  => {
- 
+    console.log('post to the db');
+    const newEntry = await openDB('mini', 1);
+    const transaction = newEntry.transaction('mini', 'readwrite');
+    const store = transaction.objectStore('mini');
+    const request = store.add({ name, home, cell, email });
+    const result = await request;
+    console.log('saved to the db', result);
 };
 
 // TODO: Complete the getDb() function below:
