@@ -22,13 +22,11 @@ module.exports = () => {
         title: "PWA Contact Directory"
       }),
 
-      // Custom service worker injected
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js"
       }),
 
-      // manifest.json file created
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
